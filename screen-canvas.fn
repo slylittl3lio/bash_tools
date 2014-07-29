@@ -1,0 +1,97 @@
+source screen-canvas.dcl
+
+#@ USAGE: setCursor [ROW [COLUMN]]
+function setCursor()
+{
+  printf "${cRC}" "${1:-1}" "${2:-1}"
+}
+
+#@ USAGE: moveCursorUp [N LINES]
+function moveCursorUp()
+{
+  printf "${cUP}" "$1"
+}
+
+#@ USAGE: moveCursorDown [N LINES]
+function moveCursorDown()
+{
+  printf "${cDOWN}" "$1"
+}
+
+#@ USAGE: moveCursorRight [N COLUMNS]
+function moveCursorRight()
+{
+  printf "${cRIGHT}" "$1"
+}
+
+#@ USAGE: moveCursorLeft [N COLUMNS]
+function moveCursorLeft()
+{
+  printf "${cLEFT}" "$1"
+}
+
+#@ USAGE: hideCursor
+function hideCursor()
+{
+  printf "${cHIDE}"
+}
+
+#@ USAGE: showCursor
+function showCursor()
+{
+  printf "${cSHOW}"
+}
+
+#@ USAGE: saveCursor
+function saveCursor()
+{
+  printf "${cSAVE}"
+}
+
+#@ USAGE: restoreCursor
+function restoreCursor()
+{
+  printf "${cRESTORE}"
+}
+
+#@ USAGE: printAt [ROW [COLUMN [string]]]
+function printAt()
+{
+  setCursor "$1" "$2"
+  if [ $# -gt 2 ]
+  then
+    shift 2
+    printf "%s" "$*"
+  fi
+}
+
+#@ USAGE: clearEOL
+function clearEOL()
+{
+  printf "${clearEOL}"
+}
+
+#@ USAGE: clearBOL
+function clearBOL()
+{
+  printf "${clearBOL}"
+}
+
+#@ USAGE: clearEOS
+function clearEOS()
+{
+  printf "${clearEOS}"
+}
+
+#@ USAGE: clearBOS
+function clearBOS()
+{
+  printf "${clearBOS}"
+}
+
+#@ USAGE: clearScreen
+function clearScreen()
+{
+  setCursor 1 1
+  clearEOS
+}

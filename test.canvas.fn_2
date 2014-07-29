@@ -1,0 +1,36 @@
+#!/bin/bash
+
+source ./screen-canvas.fn
+
+clear
+
+moveCursorDown 6
+printf "%s" "DOWN"
+sleep 1
+moveCursorRight 5
+printf "%s" "RIGHT"
+sleep 1
+moveCursorUp 3
+printf "%s" "UP"
+sleep 1
+moveCursorLeft 12
+printf "%s" "LEFT"
+sleep 1
+clear
+
+setCursor 10 10
+sleep 2
+moveCursorDown
+sleep 2
+moveCursorRight
+sleep 2
+moveCursorUp
+sleep 2
+moveCursorLeft
+sleep 2
+
+hideCursor
+sleep 2
+showCursor
+sleep 1
+clear

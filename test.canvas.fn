@@ -1,0 +1,39 @@
+#!/bin/bash
+
+source ./screen-canvas.fn
+
+clear
+
+function f1()
+{
+  restoreCursor
+  moveCursorDown "$1"
+  saveCursor
+}
+
+function f2()
+{
+  restoreCursor
+  moveCursorUp "$1"
+  saveCursor
+}
+
+
+printf "0:01234$(saveCursor)56789\n"
+printf "1:0123456789\n"
+printf "2:0123456789\n"
+printf "3:0123456789\n"
+printf "4:0123456789\n"
+printf "5:0123456789\n"
+printf "6:0123456789\n"
+printf "7:0123456789\n"
+printf "8:0123456789\n"
+printf "9:0123456789\n"
+f1 5
+sleep 3
+moveCursorLeft 5
+sleep 3
+f2 2
+sleep 3
+
+clear

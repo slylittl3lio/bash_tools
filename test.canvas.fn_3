@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source ./screen-canvas.fn
+
+clear
+
+printAt 15 15 "1) Mi primera Opcion"
+printAt 16 15 "2) Mi Segunda Opcion"
+printAt 20 15 "Seleccione una Opcion [$(saveCursor) ]"
+printAt 22 1 "*********************************************"
+restoreCursor
+read -n1
+#sleep 2
+clear

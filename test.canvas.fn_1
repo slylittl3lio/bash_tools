@@ -1,0 +1,44 @@
+#!/bin/bash
+
+source ./screen-canvas.fn
+
+clear
+
+printf "${crc}" 5 10
+echo "Hola, mundo"
+sleep 2
+clear
+
+printAt 11 10 "Pinto donde quiero"
+sleep 2
+
+clearScreen
+sleep 1
+printAt 10 10 "#Texto largo para probar el borrado de linea"
+sleep 1
+setCursor 10 16
+clearEOL
+sleep 1
+setCursor 10 10
+clearBOL
+sleep 1
+setCursor 10 
+sleep 2
+printf "Esta linea es una prueba\n"
+sleep 2
+printf "Esta linea es otra prueba\n"
+sleep 2
+printf "XXXXXEsto permaneceXXXXX\n"
+sleep 2
+printf "Esta linea es otra prueba\n"
+sleep 2
+printf "Esta linea es la ultima prueba\n"
+sleep 2
+setCursor 12 20
+sleep 2
+clearEOS
+setCursor 12 5
+sleep 2
+clearBOS
+sleep 1
+clear
