@@ -25,3 +25,22 @@ clearBOL="${CSI}1K" # clear from cursor (included) to begining of line
 clearEOS="${CSI}0J" # clear from cursor (included) to end of screen
 clearBOS="${CSI}1J" # clear from cursor (included) to begining of screen
 
+# colour variables
+black=0
+red=1
+green=2
+yellow=3
+blue=4
+magenta=5
+cyan=6
+white=7
+
+# colour prefix selectors
+fg=3
+bg=4
+
+# text format attributes
+reset=0
+bold=1
+underline=4
+reverse=7

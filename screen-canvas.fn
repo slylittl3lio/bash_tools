@@ -1,5 +1,6 @@
 source screen-canvas.dcl
 
+### Cursor Functions ###
 #@ USAGE: setCursor [ROW [COLUMN]]
 function setCursor()
 {
@@ -30,6 +31,22 @@ function moveCursorLeft()
   printf "${cLEFT}" "$1"
 }
 
+#@ USAGE: moveCursorNNextLine [N LINES]
+function moveCursorNNextLine()
+{
+  restoreCursor
+  moveCursorDown "$1"
+  saveCursor
+}
+
+#@ USAGE: moveCursorNPrevLine [N LINES]
+function moveCursorNPrevLine()
+{
+  restoreCursor
+  moveCursorUp "$1"
+  saveCursor
+}
+
 #@ USAGE: hideCursor
 function hideCursor()
 {
@@ -54,6 +71,7 @@ function restoreCursor()
   printf "${cRESTORE}"
 }
 
+### Print Functions ###
 #@ USAGE: printAt [ROW [COLUMN [string]]]
 function printAt()
 {
@@ -65,6 +83,7 @@ function printAt()
   fi
 }
 
+### Clear Functions ###
 #@ USAGE: clearEOL
 function clearEOL()
 {
@@ -95,3 +114,62 @@ function clearScreen()
   setCursor 1 1
   clearEOS
 }
+
+### Text Format Functions ###
+#@ USAGE: setTextAttribute ATTRIBUTE
+function setTextAttribute()
+{
+  printf "${CSI}%sm" "$1"
+}
+
+#@ USAGE: resetTextFormat
+function resetTextFormat()
+{
+  setTextAttribute "${reset}"
+}
+
+#@ USAGE: setBoldText
+function setBoldText()
+{
+  setTextAttribute "${bold}"
+}
+
+#@ USAGE: setUnderlineText
+function setUnderlineText()
+{
+  setTextAttribute "${underline}"
+}
+
+#@ USAGE: setReverseText
+function setReverseText()
+{
+  setTextAttribute "${reverse}"
+}
+
+### Colour Functions ###
+#@ USAGE: setBG BACKGROUND_COLOUR
+function setBG()
+{
+  colourString="\${"$1"}"
+  eval colour=$( printf "%s" "${colourString}" )
+  setTextAttribute "${bg}${colour}"
+}
+
+#@ USAGE: setFG FOREGROUND_COLOUR
+function setFG()
+{
+  colourString="\${"$1"}"
+  eval colour=$( printf "%s" "${colourString}" )
+  setTextAttribute "${fg}${colour}"
+}
+
+#@ USAGE: setBG BACKGROUND_COLOUR FOREGROUND_COLOUR
+function setBGAndFG()
+{
+  bgColourString="\${"$1"}"
+  eval bgColour=$( printf "%s" "${bgColourString}" )
+  fgColourString="\${"$2"}"
+  eval fgColour=$( printf "%s" "${fgColourString}" )
+  setTextAttribute "${bg}${bgColour};${fg}${fgColour}"
+}
+
